@@ -1,0 +1,56 @@
+<html>
+<body>
+    <style>
+        #canvas {
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            background-color: white;
+        }
+    </style>
+
+    <h3>Playing with Web Audio</h3>
+    <audio id="audioControl1" src="outfoxing.mp3" controls></audio>
+    <canvas id="canvas" width="512" height="256"></canvas>
+    
+    <script src="audio.js" type="text/javascript"></script>
+    <script src="2d-viz.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        function setupPage() {
+
+            // Setup the audio side of things
+            // We use 256 FFT bins so they are a reasonable size to view
+            setupWebAudio("audioControl", 256);
+
+            // Setup the canvas side of things
+            setupCanvas("canvas");
+
+        }
+
+        function onDrawFrame() {
+            let frequencyData = getFrequencies();
+            drawFrequencies(frequencyData);
+
+            // Schedule the next frame
+            requestAnimationFrame(onDrawFrame);
+        }
+
+        // This is only run once the browser has loaded all files and is ready
+        // run out setup, catch any error during setup
+        document.addEventListener('DOMContentLoaded', function(){
+            try {
+                setupPage();
+                // Setup an animation loop so we grab the frequency data and visualise it
+                requestAnimationFrame(onDrawFrame);
+            } catch(e) {
+                console.log(e);
+                alert("Failed to setup everything: " + e);
+            }
+        });
+
+</script>
+
+</body>
+</html>
