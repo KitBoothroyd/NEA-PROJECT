@@ -1,12 +1,12 @@
 // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Visualizations_with_Web_Audio_API#Creating_a_frequency_bar_graph
 // Global Variables for the Graphics
-let canvasWidth  = 512;
+let canvasWidth  = 1024;
 let canvasHeight = 256;
 let graphicsContext;  
 
 function setupCanvas(canvasID) {
     let control = document.getElementById(canvasID);
-    graphicsContext =  control.getContext("2d");
+    graphicsContext = control.getContext("2d");
     clearCanvas();
 }
 
