@@ -15,14 +15,16 @@
     
     <script src="audio.js" type="text/javascript"></script>
     <script src="2d-viz.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/addons/p5.dom.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/addons/p5.sound.js"></script>
 
     <script type="text/javascript">
-
         function setupPage() {
 
             // Setup the audio side of things
             // We use 256 FFT bins so they are a reasonable size to view
-            setupWebAudio("audioControl", 256);
+            setupWebAudio("audioControl", 128);
 
             // Setup the canvas side of things
             setupCanvas("canvas");
@@ -32,7 +34,7 @@
         function onDrawFrame() {
             let frequencyData = getFrequencies();
             drawFrequencies(frequencyData);
-
+            window.frequencyData = frequencyData;
             // Schedule the next frame
             requestAnimationFrame(onDrawFrame);
         }
@@ -50,7 +52,10 @@
             }
         });
 
-</script>
+    </script>
+
+    <script type="text/javascript" src="sketch.js"></script>
+
 
 </body>
 </html>
